@@ -25,12 +25,34 @@
 
         $(function(){
 
+			map = new GMaps({
+				div: '#map',
+				lat: 42.348349,
+				lng: -71.098620,
+			});
+
         });
 
     </script>
+
+    <style>
+
+		#map {
+			height: 600px;
+			width: 600px;
+		}
+
+    </style>
+
 </head>
 
 <body>
+
+<h1>Geolocate</h1>
+
+<div id="map">
+
+</div>
 
 </body>
 </html>
