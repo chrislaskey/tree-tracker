@@ -17,7 +17,7 @@
 
     <script src="http://code.jquery.com/jquery-1.11.0.min.js"></script>
     <script src="http://code.jquery.com/jquery-migrate-1.2.1.min.js"></script>
-  	<script src="http://maps.google.com/maps/api/js?sensor=true"></script>
+	<script src="http://maps.google.com/maps/api/js?sensor=true"></script>
 
     <script src="static/javascript/gmaps.js"></script>
 
@@ -30,6 +30,28 @@
 				lat: 42.348349,
 				lng: -71.098620,
 			});
+
+			GMaps.geolocate({
+				success: function(position) {
+					map.setCenter(position.coords.latitude, position.coords.longitude);
+				},
+				error: function(error) {
+					alert('Geolocation failed: '+error.message);
+				},
+				not_supported: function() {
+					alert("Your browser does not support geolocation");
+				},
+				always: function() {
+					alert("Done!");
+				},
+				options: {
+					//Passed to getCurrentPosition() as PositionOptions parameter:
+					//https://developer.mozilla.org/en-US/docs/Web/API/PositionOptions
+					enableHighAccuracy: true,
+					timeout: 120000, // 2 minutes
+					maximumAge: 5000
+				}
+			})();
 
         });
 
