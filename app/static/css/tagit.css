@@ -1,0 +1,47 @@
+.fake-input.focused {
+	outline: none;
+}
+
+.tagit {
+	list-style: none;
+	margin:0px;
+	padding:0px;
+}
+
+.tagit li {
+	margin-bottom:8px !important;
+	margin-top:0px !important;
+}
+
+.tagit-edit-handle {
+	margin-top:6px;
+}
+
+.tagit .tagit-edit-handle ul {
+	background:#fff;
+	position: absolute;
+	left: 0px;
+	right: 0px;
+	display: none;
+	margin: 0px;
+	padding: 0px;
+}
+
+.tagit .tagit-edit-handle ul.open {
+	display: block;
+}
+
+.tagit .tagit-edit-handle ul.open:hover li.selected {
+	/* background: transparent; */
+	/* color: inherit; */
+}
+
+.tagit .tagit-edit-handle ul.open li.selected,
+.tagit .tagit-edit-handle ul.open:hover li:hover {
+	background: #333;
+	color: #fff;
+}
+
+.tagit .tagit-edit-handle ul.open li {
+	display: block;
+}
