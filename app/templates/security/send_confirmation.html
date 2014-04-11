@@ -1,0 +1,49 @@
+{% extends "layouts/common.html" %}
+
+{% block body %}
+	<div class="ui three column stackable grid">
+		<div class="column"></div>
+		<div class="column">
+			<div class="item">
+				<h1>Resend confirmation instructions</h1>
+				<div class="ui segment">
+					{% include "partials/messages.html" %}
+					<form action="{{ url_for_security('send_confirmation') }}" method="POST" name="send_confirmation_form" class="ui form">
+						{% from "partials/login-macros.html" import render_field_with_errors, render_field %}
+  						{{ send_confirmation_form.hidden_tag() }}
+  						{{ render_field_with_errors(send_confirmation_form.email) }}
+  						{{ render_field(send_confirmation_form.submit) }}
+					</form>
+				</div>
+			</div>
+			<div class="item">
+				{% include "partials/login-menu.html" %}
+			</div>
+		</div>
+		<div class="column"></div>
+	</div>
+
+	<script>
+
+		var styling = {};
+
+		styling.email_field = function(){
+			$('input#email')
+				.wrap('<div class="ui left labeled icon input"></div>')
+				.parent()
+				.append('<i class="mail icon"></i>')
+				.append('<div class="ui corner label"><i class="icon asterisk"></i></div>');
+		}
+
+		styling.submit_field = function(){
+			$('input#submit')
+				.attr('class', 'ui blue submit button');
+		}
+
+		$(function(){
+			styling.email_field();
+			styling.submit_field();
+		});
+
+	</script>
+{% endblock %}
