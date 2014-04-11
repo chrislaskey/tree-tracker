@@ -9,7 +9,14 @@ html, body {
 
 body {
 	background: #f2f2f2;
-	font: 16px/24px 'Helvetica', sans-serif;
+	font-size: 16px;
+	font-family: 'Open Sans', Helvetica, Arial, sans-serif;
+	line-height: 24px;
+	margin: 0px;
+	min-width: 320px;
+	padding: 0px;
+	text-rendering: optimizeLegibility;
+    -webkit-font-smoothing: antialiased;
 }
 
 #map {
