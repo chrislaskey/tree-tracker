@@ -1,0 +1,7 @@
+flask-restful
+Flask-SQLAlchemy
+Flask-Security
+py-bcrypt
+alembic==0.6.3
+nose
+coverage
