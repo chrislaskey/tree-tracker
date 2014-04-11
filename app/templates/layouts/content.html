@@ -1,0 +1,19 @@
+{% extends "layouts/common.html" %}
+
+{% block body %}
+
+	<div class="ui fixed menu">
+		<a class="item">Geolocate</a>
+		<div class="right menu">
+			<a class="item"><i class="ui icon user"></i>Username</a>
+		</div>
+	</div>
+
+	<div class="ui one column page grid main">
+		<div class="column content">
+			{% block content %}
+			{% endblock %}
+		</div>
+	</div>
+
+{% endblock %}
