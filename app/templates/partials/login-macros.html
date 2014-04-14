@@ -12,3 +12,7 @@
 {% macro render_field(field) %}
 	<div class="field">{{ field(**kwargs)|safe }}</div>
 {% endmacro %}
+
+{% macro render_submit_field(field) %}
+	{{ field(**kwargs)|safe }}
+{% endmacro %}
