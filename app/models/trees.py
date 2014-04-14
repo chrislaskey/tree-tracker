@@ -1,13 +1,6 @@
 from . import db
 
 
-trees_users = db.Table(
-    'trees_users',
-    db.Column('tree_id', db.Integer(), db.ForeignKey('tree.id')),
-    db.Column('user_id', db.Integer(), db.ForeignKey('user.id'))
-)
-
-
 class Tree(db.Model):
     id = db.Column(db.Integer, primary_key=True)
     longitude = db.Column(db.Text())
