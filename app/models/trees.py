@@ -16,8 +16,7 @@ class Tree(db.Model):
     common_name = db.Column(db.Text())
     description = db.Column(db.Text())
     date_created = db.Column(db.DateTime())
-    # players = db.relationship(
-    #     'User',
-    #     secondary = trees_users,
-    #     backref = db.backref('tree', lazy = 'dynamic')
-    # )
+
+    user_id = db.Column(db.Integer, db.ForeignKey('user.id'))
+    user = db.relationship('User',
+        backref=db.backref('trees', lazy='dynamic'))
