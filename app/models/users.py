@@ -1,6 +1,5 @@
 from flask.ext.security import UserMixin
 from . import db
-from . trees import trees_users
 from . roles import roles_users
 
 
@@ -18,9 +17,9 @@ class User(db.Model, UserMixin):
     last_login_ip = db.Column(db.String(255))
     current_login_ip = db.Column(db.String(255))
     login_count = db.Column(db.Integer)
+
     roles = db.relationship('Role', secondary = roles_users,
         backref = db.backref('users', lazy = 'dynamic'))
-    trees = db.relationship('Tree', secondary = trees_users,
-        backref = db.backref('users', lazy = 'dynamic'))
+
     friends = db.relationship('Friend', backref='Friend.friend_id',
         primaryjoin='User.id==Friend.user_id', lazy='joined')
