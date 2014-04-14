@@ -1,0 +1,36 @@
+{% extends "layouts/content.html" %}
+
+{% block content %}
+
+	<h2 class="ui header">Add Tree Measurement</h2>
+
+	{% include "partials/messages.html" %}
+
+	<form action="{{ request.url }}" method="POST" name="add_tree" class="ui form">
+		{% from "partials/login-macros.html" import render_field_with_errors, render_field, render_submit_field %}
+		{{ add_measurement_form.hidden_tag() }}
+		{{ render_field_with_errors(add_measurement_form.width) }}
+		{{ render_field_with_errors(add_measurement_form.units) }}
+		{{ render_submit_field(add_measurement_form.submit) }}
+		<a href="/tree/{{ tree_id }}" class="ui button">Back</a>
+	</form>
+
+	<script>
+
+		var styling = {};
+
+		styling.submit_field = function(){
+			$('input#submit')
+				.attr('class', 'ui green submit button');
+		}
+
+		$(function(){
+
+			styling.submit_field();
+
+		});
+
+	</script>
+
+{% endblock %}
+
