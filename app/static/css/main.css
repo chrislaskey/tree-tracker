@@ -2,9 +2,10 @@
 ============================================================================ */
 
 html, body {
+	height: 100%;
 	margin: 0px;
 	padding: 0px;
-	-webkit-font-smoothing: antialiased;
+	width: 100%;
 }
 
 body {
@@ -19,13 +20,58 @@ body {
     -webkit-font-smoothing: antialiased;
 }
 
-#map {
-	height: 300px;
+a {
+	color: #8fb334;
+	text-decoration: none;
+}
+
+	a:hover {
+		text-decoration: underline;
+	}
+
+
+/* Structure
+============================================================================ */
+
+#map-container {
+	border-bottom: 1px solid #d7e8c1;
+	height: 64%;
+	margin: 0px;
+	padding: 43px 0px 0px 0px;
 	width: 100%;
 }
 
-.gmapjs-tree-marker {
-	font-size: 16px;
-	height: 100px;
-	width: 200px;
+
+/* Header Menu
+============================================================================ */
+
+.menu.main {
+
+}
+
+	.logo {
+		font-weight: bold;
+	}
+
+
+/* Map Hero
+============================================================================ */
+
+#map {
+	height: 100%;
+	width: 100%;
+}
+
+	.gmapjs-tree-marker {
+		font-size: 16px;
+		width: 200px;
+		overflow: auto;
+	}
+
+
+/* Content
+============================================================================ */
+
+.content {
+
 }
