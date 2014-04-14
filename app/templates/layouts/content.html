@@ -2,12 +2,21 @@
 
 {% block body %}
 
-	<div class="ui fixed menu">
-		<a class="item">Geolocate</a>
+	<div class="ui fixed inverted green menu main">
+		{# <span class="item logo">trees</span> #}
+		{# <a class="item" href="/"><i class="icon home"></i> home</a> #}
+		<a class="item logo" href="/"><i class="icon home"></i> trees</a>
 		<div class="right menu">
-			<a class="item"><i class="ui icon user"></i>Username</a>
+			{% if current_user and current_user.screen_name %}
+				<a class="item"><i class="ui icon user"></i>{{ current_user.screen_name }}</a>
+			{% else %}
+				<a class="item" href="/login"><i class="ui icon user"></i>login</a>
+			{% endif  %}
 		</div>
 	</div>
+
+	{% block map %}
+	{% endblock %}
 
 	<div class="ui one column page grid main">
 		<div class="column content">
