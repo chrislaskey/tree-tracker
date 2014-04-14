@@ -10,7 +10,7 @@ from .. models.users import User
 @login_required
 def index():
     return render_template(
-        'index.html',
+        'home.html',
         current_user = current_user,
         is_first_login = is_first_login(),
         trees = get_trees()
