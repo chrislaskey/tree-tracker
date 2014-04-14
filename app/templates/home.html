@@ -14,6 +14,14 @@
 
 	{% include "partials/messages.html" %}
 
+	<p>Add a new tree using:</p>
+
+	<div class="ui buttons">
+		<a class="ui button small green" href="/add-tree">Device GPS</a>
+		<a class="ui button small disabled blue" href="#">Point on Map</a>
+		<a class="ui button small disabled blue" href="#">Street Address</a>
+	</div>
+
 	<div class="ui grid two column stackable">
 
 		<div class="column">
@@ -29,14 +37,6 @@
 			{% endfor %}
 
 			</ul>
-
-			<p>Add a new tree using:</a>
-
-			<div class="ui buttons">
-				<a class="ui button small green" href="/add-tree">Device GPS</a>
-				<a class="ui button small disabled blue" href="#">Point on Map</a>
-				<a class="ui button small disabled blue" href="#">Street Address</a>
-			</div>
 		
 		</div>
 
@@ -57,6 +57,12 @@
 		</div>
 
 	</div>
+
+	<h2>About the App</h2>
+
+	<p>Trees is an application for testing GPS tracking with mobile devices using HTML 5.</p>
+
+	<p><a class="ui icon green tiny button" href="https://github.com/chrislaskey/trees.chrislaskey.com"><i class="icon github"></i> Github</a></p>
 
 	<script>
 
