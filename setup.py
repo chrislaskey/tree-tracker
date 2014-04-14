@@ -25,14 +25,14 @@ if command == 'test':
 
     user_datastore.create_user(
         email='player-one@chrislaskey.com',
-        screen_name='player-one',
+        screen_name='Chris',
         # password: player-one
         password='$2a$12$96vs6hmhJzBgi1fw4b6vIu87VuzMP2lFIcoIxTJ1U6h9m.AjuNDdO'
     )
 
     user_datastore.create_user(
         email='player-two@chrislaskey.com',
-        screen_name='player-two',
+        screen_name='Gitte',
         # password: player-two
         password='$2a$12$obgmmSNEhciOEbg.Ob1tAuFyopqA4/JsTt/V3OoD.QGkckp0Qc0FW'
     )
@@ -54,24 +54,27 @@ if command == 'test':
 
     db.session.add_all([
         Tree(
-            latitude    = '42.348483',
-            longitude   = '-71.098190',
-            address     = '',
-            common_name = 'White Oak',
+            latitude     = '42.348483',
+            longitude    = '-71.098190',
+            address      = '',
+            common_name  = 'White Oak',
+            user_id      = 2,
             date_created = datetime.utcnow(),
         ),
         Tree(
-            latitude    = '42.348427',
-            longitude   = '-71.098444',
-            address     = '',
-            common_name = 'Norwegian Maple',
+            latitude     = '42.348427',
+            longitude    = '-71.098444',
+            address      = '',
+            common_name  = 'Norwegian Maple',
+            user_id      = 1,
             date_created = datetime.utcnow(),
         ),
         Tree(
-            latitude    = '42.349031',
-            longitude   = '-71.096286',
-            address     = '',
-            common_name = 'Norwegian Maple',
+            latitude     = '42.349031',
+            longitude    = '-71.096286',
+            address      = '',
+            common_name  = 'Norwegian Maple',
+            user_id      = 2,
             date_created = datetime.utcnow(),
         )
     ])
