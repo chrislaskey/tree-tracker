@@ -1,4 +1,8 @@
-#!.venv/bin/python
+virtualenv_site_packages = '/usr/lib/virtualenvs/tree-tracker/lib/python2.7/site-packages/'
+
+import os, sys
+sys.path.insert(0, os.path.dirname(__file__))
+sys.path.insert(0, virtualenv_site_packages)
 
 from app import app as application
 
