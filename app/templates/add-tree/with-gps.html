@@ -15,13 +15,13 @@
 	{% include "partials/messages.html" %}
 
 	<form action="{{ request.url }}" method="POST" name="add_tree" class="ui form">
-		{% from "partials/login-macros.html" import render_field_with_errors, render_field %}
+		{% from "partials/login-macros.html" import render_field_with_errors, render_field, render_submit_field %}
 		{{ add_tree_form.hidden_tag() }}
 		{{ render_field_with_errors(add_tree_form.longitude) }}
 		{{ render_field_with_errors(add_tree_form.latitude) }}
 		{# {{ render_field_with_errors(add_tree_form.address) }} #}
 		{{ render_field_with_errors(add_tree_form.common_name) }}
-		{{ render_field(add_tree_form.submit) }}
+		{{ render_submit_field(add_tree_form.submit) }}
 		<a href="/" class="ui button">Back</a>
 	</form>
 
