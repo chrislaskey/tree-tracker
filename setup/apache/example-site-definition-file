@@ -1,0 +1,28 @@
+<VirtualHost *:80>
+
+    ServerName tree-tracker.chrislaskey.com
+
+    ServerAlias trees.chrislaskey.com
+	
+    DocumentRoot /data/websites/tree-tracker
+
+    Alias /static /data/websites/tree-tracker/app/static/
+    Alias /robots.txt /data/websites/tree-tracker/robots.txt
+    Alias /favicon.ico /data/websites/tree-tracker/favicon.ico
+
+    <Directory /data/websites/tree-tracker>
+        Order allow,deny
+        Allow from all
+    </Directory>
+
+    WSGIDaemonProcess tree-tracker
+    WSGIScriptAlias / /data/websites/tree-tracker/app.wsgi
+
+    <Directory /data/websites/tree-tracker>
+        WSGIProcessGroup tree-tracker
+        WSGIApplicationGroup %{GLOBAL}
+        Order deny,allow
+        Allow from all
+    </Directory>
+    
+</VirtualHost>
