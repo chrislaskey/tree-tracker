@@ -1,4 +1,4 @@
-#!/usr/lib/virtualenvs/geolocate/bin/python
+#!/usr/lib/virtualenvs/tree-tracker/bin/python
 
 # Create database
 # Load all app.models.* first, hooking them into db. Then call db.create_all().
