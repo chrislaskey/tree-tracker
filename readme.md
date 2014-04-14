@@ -1,8 +1,16 @@
 About
 ================================================================================
 
-Simple exploration of the status of HTML5 geolocation tools on mobile devices as
-of April, 2014.
+A mobile device friendly GPS geolocation application. Created to test the current
+state of GPS tracking on various mobile devices.
+
+Implemented using HTML5, GMapJS, Semantic UI, and Python Flask.
+
+
+Demo
+================================================================================
+
+A demo is available at [tree-tracker.chrislaskey.com](http://tree-tracker.chrislaskey.com)
 
 
 License
