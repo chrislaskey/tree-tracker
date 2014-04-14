@@ -29,6 +29,7 @@ def save_add_tree(form):
         address      = form.address.data,
         common_name  = form.common_name.data,
         date_created = datetime.utcnow(),
+        user_id      = current_user.id,
     )
     db_add(
         new_tree,
