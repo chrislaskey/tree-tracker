@@ -1,12 +1,18 @@
 {% extends "layouts/content.html" %}
 
+{% block map %}
+
+	<div id="map-container">
+		<div id="map"></div>
+	</div>
+
+{% endblock %}
+
 {% block content %}
 
 	<h2 class="ui header">Add Tree with Mobile Device GPS</h2>
 
 	{% include "partials/messages.html" %}
-
-	<div id="map" class="add-tree"></div>
 
 	<form action="{{ request.url }}" method="POST" name="add_tree" class="ui form">
 		{% from "partials/login-macros.html" import render_field_with_errors, render_field %}
