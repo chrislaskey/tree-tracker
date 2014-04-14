@@ -1,0 +1,83 @@
+{% extends "layouts/content.html" %}
+
+{% block map %}
+
+	<div id="map-container">
+		<div id="map"></div>
+	</div>
+
+{% endblock %}
+
+{% block content %}
+
+	<h1>Tree {{ tree.common_name }} (ID: {{ tree.id }})</h1>
+
+	{% include "partials/messages.html" %}
+
+	<h2>Measurements</h2>
+
+	<table class="ui table segment" cellpadding="0" cellspacing="0">
+
+ 		<thead>
+    		<tr>
+				<th>Measurement</th>
+    			<th>Units</th>
+    			<th>Collected By</th>
+    			<th>Date</th>
+  			</tr>
+		</thead>
+
+		<tbody>
+
+	{% for measurement in tree.measurements %}
+
+		<tr>
+			<td>{{ measurement.width }}</td>
+			<td>{{ measurement.units }}</td>
+			<td>{{ measurement.user.screen_name }}</td>
+			<td>{{ measurement.date_created }}</td>
+		</tr>
+
+	{% endfor %}
+
+	</table>
+
+	<a class="ui labeled icon green button" href="/tree/{{ tree.id }}/add-measurement"><i class="icon add"></i> Add Measurement</a>
+
+	<script>
+
+	$(function(){
+
+		var trees = [
+			[{{ tree.id}}, '{{ tree.common_name }}', '{{ tree.latitude }}', '{{ tree.longitude }}'],
+		];
+
+		var map = new GMaps({
+			div: '#map',
+			lat: {{ tree.latitude }},
+			lng: {{ tree.longitude }},
+			zoom: 18,
+		});
+
+		if( trees ) {
+			var icon = encodeURI('/static/images/gmapjs-marker-blue.png');
+			for (var i = 0; i < trees.length; i++ ) {
+				var tree = trees[i];
+				map.addMarker({
+					lat: tree[2],
+					lng: tree[3],
+					title: tree[1],
+					icon: icon,
+					infoWindow: {
+						content: '<div class="gmapjs-tree-marker"><strong>' + tree[1] + '</strong> (ID: ' + tree[0] + ')</div>',
+					}
+				});
+			}
+		}
+
+	});
+
+	</script>
+
+{% endblock %}
+
