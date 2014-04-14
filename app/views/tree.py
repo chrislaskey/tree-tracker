@@ -1,12 +1,11 @@
 from flask import flash, redirect, render_template
-from flask.ext.security import login_required, current_user
+from flask.ext.security import current_user
 from .. import app
 from .. models import db
 from .. models.trees import Tree
 
 
 @app.route('/tree/<int:tree_id>', methods=('GET', 'POST'))
-@login_required
 def tree(tree_id):
     tree = get_tree(tree_id)
     if not tree:

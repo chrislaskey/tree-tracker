@@ -1,5 +1,5 @@
 from flask import render_template
-from flask.ext.security import login_required, current_user
+from flask.ext.security import current_user
 from .. import app
 from .. models import db
 from .. models.trees import Tree
@@ -8,7 +8,6 @@ from .. models.users import User
 
 
 @app.route('/')
-@login_required
 def index():
     return render_template(
         'home.html',
