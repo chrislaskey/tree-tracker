@@ -18,10 +18,8 @@ def index():
         recent_measurements = get_recent_measurements(),
     )
 
-
 def get_trees():
     return db.session.query(Tree).all()
-
 
 def get_recent_trees():
     return db.session.query(Tree)\
@@ -36,4 +34,7 @@ def get_recent_measurements():
         .all()
 
 def is_first_login():
-    return current_user.last_login_at == current_user.current_login_at
+    try:
+        return current_user.last_login_at == current_user.current_login_at
+    except AttributeError:
+        return False
