@@ -1,6 +1,6 @@
 from datetime import datetime
 from flask import redirect, render_template
-from flask.ext.security import login_required, current_user
+from flask.ext.security import current_user
 from .. import app
 from .. models import db
 from .. models.db_helpers import db_add
@@ -9,10 +9,11 @@ from .. forms.addmeasurementform import AddMeasurementForm
 
 
 @app.route('/tree/<int:tree_id>/add-measurement', methods=('GET', 'POST'))
-@login_required
 def add_measurement(tree_id):
     form = AddMeasurementForm()
     if form.validate_on_submit():
+        if not current_user.is_authenticated():
+            return app.login_manager.unauthorized()
         save_add_measurement(form, tree_id)
         url = '/tree/{0}'.format(tree_id)
         return redirect(url)

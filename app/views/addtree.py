@@ -1,6 +1,6 @@
 from datetime import datetime
 from flask import redirect, render_template
-from flask.ext.security import login_required, current_user
+from flask.ext.security import current_user
 from .. import app
 from .. models import db
 from .. models.db_helpers import db_add
@@ -9,10 +9,11 @@ from .. forms.addtreeform import AddTreeForm
 
 
 @app.route('/add-tree', methods=('GET', 'POST'))
-@login_required
 def add_tree():
     form = AddTreeForm()
     if form.validate_on_submit():
+        if not current_user.is_authenticated():
+            return app.login_manager.unauthorized()
         save_add_tree(form)
         return redirect('/')
     return render_template(
