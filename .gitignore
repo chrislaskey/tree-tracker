@@ -5,3 +5,4 @@ app.db
 todo.txt
 *.DS_Store
 alembic.ini
+node_modules
