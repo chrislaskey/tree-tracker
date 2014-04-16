@@ -56,9 +56,39 @@
 
 	<h2>About the App</h2>
 
-	<p>Trees is an application for testing GPS tracking with mobile devices using HTML 5.</p>
+	<p>Trees is an open source application for testing GPS tracking with mobile devices using HTML 5. Code is available on:</p>
 
-	<p><a class="ui icon green tiny button" href="https://github.com/chrislaskey/trees.chrislaskey.com"><i class="icon github"></i> Github</a></p>
+	<p><a class="ui icon green small button" href="https://github.com/chrislaskey/tree-tracker"><i class="icon github"></i> Github</a></p>
+
+	<div class="ui location-data modal">
+
+		<i class="close icon"></i>
+
+		<div class="header">
+
+			Location Data
+
+		</div>
+
+		<div class="content">
+
+			<p>This website uses location data for mapping purposes only. Information about users is never stored.</p>
+
+			<p>For a better user experience please consider allowing location data when prompted by your device. Thanks!</p>
+
+		</div>
+
+		<div class="actions">
+
+			<div class="ui positive right labeled icon button">
+
+				<i class="checkmark icon"></i> Okay, got it
+
+			</div>
+
+		</div>
+
+	</div>
 
 	<script>
 
@@ -89,11 +119,16 @@
 					title: tree[1],
 					icon: icon,
 					infoWindow: {
-						{# content: '<div class="gmapjs-tree-marker"><strong>' + tree[1] + '</strong><br/><small>ID: ' + tree[0] + '</small><br/><a class="ui icon button tiny blue" href="/tree/' + tree[0] + '"><i class="pencil icon"></i> Tree Details</a><br/><a class="ui icon button tiny green" href="/tree/' + tree[0] + '/add-measurement"><i class="pencil icon"></i> Add Measurement</a></div>' #}
 						content: '<div class="gmapjs-tree-marker"><strong>' + tree[1] + '</strong> (ID: ' + tree[0] + ')<br/><div class="ui buttons"><a class="ui icon button tiny blue" href="/tree/' + tree[0] + '"><i class="info letter icon"></i></a><a class="ui icon button tiny green" href="/tree/' + tree[0] + '/add-measurement"><i class="pencil icon"></i></a></div>'
 					}
 				});
 			}
+		}
+
+		if ( ! $.cookie('location-data-modal') ) {
+			$.cookie('location-data-modal', 'got-it', { expires: 30, path: '/' });
+			$('.location-data.modal')
+				.modal('show');
 		}
 
 	});
