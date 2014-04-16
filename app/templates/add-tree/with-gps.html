@@ -52,7 +52,7 @@
 
 			var input_latitude = $('input#latitude'),
 				input_longitude = $('input#longitude');
-
+			
 			styling.latitude_field();
 			styling.longitude_field();
 			styling.submit_field();
@@ -62,57 +62,114 @@
 
 			var map = new GMaps({
 				div: '#map',
-				lat: 42.348349,
-				lng: -71.098620,
+				lat: geolocation.defaults.latitude,
+				lng: geolocation.defaults.longitude,
 				zoom: 18,
 			});
 
-			GMaps.geolocate({
-				success: function(position) {
-					input_latitude
-						.prop('disabled', false)
-						.attr('value', position.coords.latitude);
+			var update_map = {};
 
-					input_longitude
-						.prop('disabled', false)
-						.attr('value', position.coords.longitude);
+			update_map.latitude = geolocation.defaults.latitude;
+			update_map.longitude = geolocation.defaults.longitude;
 
-					map
-						.setCenter(position.coords.latitude, position.coords.longitude);
-
-					map
-						.addMarker({
-							lat: position.coords.latitude,
-							lng: position.coords.longitude,
-							icon: {
-								url: encodeURI('/static/images/gmapjs-target.png'),
-								anchor: new google.maps.Point(9, 9),
-							},
-							click: function() { }
-						});
-
-					map
-						.addMarker({
-							lat: position.coords.latitude,
-							lng: position.coords.longitude,
-							icon: encodeURI('/static/images/gmapjs-marker-blue.png'),
-							click: function() { }
-						});
-				},
-				error: function(error) {
-					alert('Geolocation failed: ' + error.message);
-				},
-				not_supported: function() {
-					alert('Your browser does not support geolocation');
-				},
-				options: {
-					//Passed to getCurrentPosition() as PositionOptions parameter:
-					//https://developer.mozilla.org/en-US/docs/Web/API/PositionOptions
-					enableHighAccuracy: true,
-					timeout: 120000, // 2 minutes
-					maximumAge: 5000
+			messages.create(
+				'regular',
+				'Getting Location',
+				'Finding your current location',
+				{
+					'icon': 'bullseye',
 				}
-			});
+			);
+
+			update_map.on_success = function(position) {
+				messages.create(
+					'info',
+					'Location Found',
+					'Map updated with current location',
+					{
+						'icon': 'check',
+						'clear': 'true',
+						'fadeOut': '5000'
+					}
+				);
+
+				map
+					.setCenter(position.coords.latitude, position.coords.longitude);
+
+				map
+					.addMarker({
+						lat: position.coords.latitude,
+						lng: position.coords.longitude,
+						icon: {
+							url: encodeURI('/static/images/gmapjs-target.png'),
+							anchor: new google.maps.Point(9, 9),
+						},
+						click: function() { }
+					});
+
+				update_map.latitude = position.coords.latitude;
+				update_map.longitude = position.coords.longitude;
+			}
+
+			update_map.on_error = function(error) {
+				messages.create(
+					'error',
+					'Error getting current location',
+					error.message,
+					{
+						'icon': 'exclamation',
+						'clear': 'true',
+						'close': 'true'
+					}
+				);
+			}
+
+			update_map.on_not_supported = function() {
+				messages.create(
+					'warning',
+					'Location data not supported',
+					'Could not determine location data from you device.',
+					{
+						'icon': 'exclamation',
+						'clear': 'true'
+					}
+				);
+			}
+
+			update_map.on_always = function() {
+				input_latitude
+					.prop('disabled', false)
+					.attr('value', update_map.latitude);
+
+				input_longitude
+					.prop('disabled', false)
+					.attr('value', update_map.longitude);
+
+				map
+					.addMarker({
+						lat: update_map.latitude,
+						lng: update_map.longitude,
+						draggable: true,
+						icon: encodeURI('/static/images/gmapjs-marker-blue.png'),
+						click: function() { },
+						dragend: function() {
+							input_latitude
+								.prop('disabled', false)
+								.attr('value', this.getPosition().lat());
+
+							input_longitude
+								.prop('disabled', false)
+								.attr('value', this.getPosition().lng());
+						}
+					});
+			}
+
+			geolocation.update(
+				update_map.on_success,
+				update_map.on_error,
+				update_map.on_not_supported,
+				update_map.on_always
+			);
 
 		});
 
