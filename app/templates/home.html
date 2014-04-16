@@ -94,6 +94,83 @@
 
 	$(function(){
 
+		var map = new GMaps({
+			div: '#map',
+			lat: geolocation.defaults.latitude,
+			lng: geolocation.defaults.longitude,
+			zoom: 15,
+		});
+
+		var update_map = {};
+
+		messages.create(
+			'regular',
+			'Getting Location',
+			'Finding your current location',
+			{
+				'icon': 'bullseye',
+			}
+		);
+
+		update_map.on_success = function(position) {
+			messages.create(
+				'info',
+				'Location Found',
+				'Map updated with current location',
+				{
+					'icon': 'check',
+					'clear': 'true',
+					'fadeOut': '2000'
+				}
+			);
+
+			map
+				.setCenter(position.coords.latitude, position.coords.longitude);
+
+			map
+				.addMarker({
+					lat: position.coords.latitude,
+					lng: position.coords.longitude,
+					icon: {
+						url: encodeURI('/static/images/gmapjs-target.png'),
+						anchor: new google.maps.Point(9, 9),
+					},
+					click: function() { }
+				});
+
+		}
+
+		update_map.on_error = function(error) {
+			messages.create(
+				'error',
+				'Error getting current location',
+				error.message,
+				{
+					'icon': 'exclamation',
+					'clear': 'true',
+					'close': 'true'
+				}
+			);
+		}
+
+		update_map.on_not_supported = function() {
+			messages.create(
+				'warning',
+				'Location data not supported',
+				'Could not determine location data from you device.',
+				{
+					'icon': 'exclamation',
+					'clear': 'true'
+				}
+			);
+		}
+
+		geolocation.update(
+			update_map.on_success,
+			update_map.on_error,
+			update_map.on_not_supported
+		);
+
 		var trees = [
 			{% if trees %}
 				{% for tree in trees %}
@@ -101,13 +178,6 @@
 				{% endfor %}
 			{% endif %}
 		];
-
-		var map = new GMaps({
-			div: '#map',
-			lat: 42.348349,
-			lng: -71.098620,
-			zoom: 15,
-		});
 
 		if( trees ) {
 			var icon = encodeURI('/static/images/gmapjs-marker.png');
