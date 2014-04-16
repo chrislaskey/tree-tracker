@@ -10,17 +10,13 @@
 
 {% block content %}
 
-	<h1>Trees</h1>
+	<h1>Tree Tracker</h1>
 
 	{% include "partials/messages.html" %}
 
-	<p>Add a new tree using:</p>
+	<p>Click on a tree on the map above for more information about it.</p>
 
-	<div class="ui buttons">
-		<a class="ui button small green" href="/add-tree">Device GPS</a>
-		<a class="ui button small disabled blue" href="#">Point on Map</a>
-		<a class="ui button small disabled blue" href="#">Street Address</a>
-	</div>
+	<p><a class="ui labeled icon small green button" href="/add-tree"><i class="icon plus"></i> Add New Tree</a></p>
 
 	<div class="ui grid two column stackable">
 
