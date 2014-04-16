@@ -12,11 +12,13 @@
   <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='css/main.css') }}" />
 
   <script src="http://cdnjs.cloudflare.com/ajax/libs/jquery/2.0.3/jquery.js"></script>
-  <script src="http://cdnjs.cloudflare.com/ajax/libs/jquery.address/1.6/jquery.address.js"></script>
   <script src="http://maps.google.com/maps/api/js?sensor=true"></script>
   <script src="{{ url_for('static', filename='javascript/semantic.min.js') }}"></script>
   <script src="{{ url_for('static', filename='javascript/gmaps.js') }}"></script>
   <script src="{{ url_for('static', filename='javascript/garlic.min.js') }}"></script>
+  <script src="{{ url_for('static', filename='javascript/jquery.cookie.js') }}"></script>
+  <script src="{{ url_for('static', filename='javascript/underscore-min.js') }}"></script>
+  <script src="{{ url_for('static', filename='javascript/moment.min.js') }}"></script>
 
   {% block head %}
   {% endblock %}
