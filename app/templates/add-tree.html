@@ -14,6 +14,8 @@
 
 	{% include "partials/messages.html" %}
 
+	<p>A new marker is automatically added to the map. If the location is not correct, drag the marker to the correct location on the map.</p>
+
 	<form action="{{ request.url }}" data-persist="garlic" method="POST" name="add_tree" class="ui form">
 		{% from "partials/login-macros.html" import render_field_with_errors, render_field, render_submit_field %}
 		{{ add_tree_form.hidden_tag() }}

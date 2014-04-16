@@ -17,7 +17,7 @@ def add_tree():
         save_add_tree(form)
         return redirect('/')
     return render_template(
-        'add-tree/with-gps.html',
+        'add-tree.html',
         current_user = current_user,
         add_tree_form = form
     )
