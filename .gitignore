@@ -4,3 +4,4 @@ production.log
 app.db
 todo.txt
 *.DS_Store
+alembic.ini
