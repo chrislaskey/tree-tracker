@@ -1,8 +1,20 @@
 #!/usr/bin/env bash
 
-production_log_file="./production.log"
-production_log_user="www-data"
-production_log_group="www-data"
+# Version 1.1.0
+
+production_log_file="./app/production.log"
+
+get_production_log_user () {
+	if id apache; then
+		production_log_user="apache"
+		production_log_group="apache"
+	elif id www-data; then
+		production_log_user="www-data"
+		production_log_group="www-data"
+	else
+		error "Could not determine correct user/group file permissions for production log file."
+	fi
+}
 
 create_production_log_file () {
 	if [[ ! -f "${production_log_file}" ]]; then
@@ -20,4 +32,5 @@ create_production_log_file () {
 	fi
 }
 
+get_production_log_user
 create_production_log_file
