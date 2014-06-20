@@ -1,0 +1,36 @@
+{
+  "name": "tree-tracker",
+  "version": "0.8.0",
+  "description": "A GPS geolocation app using HTML5 / GMapJS / Python Flask",
+  "main": "gulp.js",
+  "dependencies": {
+    "gulp": "~3.6.0"
+  },
+  "devDependencies": {
+    "gulp": "^3.6.0"
+  },
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "http://github.com/chrislaskey/tree-tracker"
+  },
+  "keywords": [
+    "geolocation",
+    "GMapJS",
+    "Python",
+    "Python",
+    "Flask",
+    "HTML5",
+    "GPS",
+    "Mapping",
+    "Google Maps"
+  ],
+  "author": "Chris Laskey",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/chrislaskey/tree-tracker/issues"
+  },
+  "homepage": "https://github.com/chrislaskey/tree-tracker"
+}
