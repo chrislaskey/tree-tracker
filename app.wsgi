@@ -1,10 +1,17 @@
-virtualenv_site_packages = '/usr/lib/virtualenvs/tree-tracker/lib/python2.7/site-packages/'
+import glob, os, sys
 
-import os, sys
-sys.path.insert(0, os.path.dirname(__file__))
-sys.path.insert(0, virtualenv_site_packages)
+
+project_dir = os.path.dirname(__file__)
+project_name = os.path.basename(project_dir)
+virtualenv = '/usr/lib/virtualenvs/{0}'.format(project_name)
+site_packages = glob.glob('{0}/lib/*/site-packages'.format(virtualenv))[0]
+
+sys.path.insert(0, project_dir)
+sys.path.insert(0, site_packages)
+
 
 from app import app as application
+
 
 if not application.debug:
     import logging
